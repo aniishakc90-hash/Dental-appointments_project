@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "apidoc": "apioc -i . -o apidoc"
-  },
+  "start": "node server.js",
+  "apidoc": "npx apidoc -i . -o apidoc"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
