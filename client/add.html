@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Appointment</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="add">
+  <header class="topbar">
+    <div class="brand">Dental Care</div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="appointments.html">Appointments</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main class="page centered-page">
+    <section class="form-card">
+      <div class="form-header">Add Appointment</div>
+
+      <form id="addAppointmentForm" class="form-body">
+        <div class="field">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" placeholder="Enter first name" required />
+        </div>
+
+        <div class="field">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" placeholder="Enter last name" required />
+        </div>
+
+        <div class="row two-col">
+          <div class="field">
+            <label for="date">Date</label>
+            <input type="date" id="date" required />
+          </div>
+
+          <div class="field">
+            <label for="time">Time</label>
+            <input type="text" id="time" placeholder="Enter time e.g. 10:00 AM" required />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="treatment">Treatment</label>
+          <input type="text" id="treatment" placeholder="Enter treatment" required />
+        </div>
+
+        <div class="actions-row">
+          <button type="submit" class="btn btn-secondary">Save Appointment</button>
+          <a href="appointments.html" class="btn btn-light">Cancel</a>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <div class="toast hidden" id="toastMessage"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Appointments</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="appointments">
+  <header class="topbar">
+    <div class="brand">Dental Care</div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="appointments.html" class="active">Appointments</a>
+      <a href="admin.html">Admin</a>
+    </nav>
+  </header>
+
+  <main class="page appointments-page">
+    <section class="section-head section-head-row">
+      <div>
+        <h1>Appointments</h1>
+        <p>Manage your appointments easily</p>
+      </div>
+      <a href="add.html" class="btn btn-primary btn-wide">+ Add Appointment</a>
+    </section>
+
+    <section class="card filter-card">
+      <div class="filter-grid">
+        <div class="field">
+          <label>Name</label>
+          <input type="text" id="filterName" placeholder="Enter name" />
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <input type="text" id="filterDate" placeholder="Enter date" />
+        </div>
+        <div class="field">
+          <label>Time</label>
+          <input type="text" id="filterTime" placeholder="Enter time" />
+        </div>
+        <div class="field">
+          <label>Treatment</label>
+          <input type="text" id="filterTreatment" placeholder="Treatment type" />
+        </div>
+      </div>
+    </section>
+
+    <section class="card table-card">
+      <div class="table-wrap">
+        <table class="appointments-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Treatment</th>
+              <th class="actions-col">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="appointmentsTableBody">
+            <tr>
+              <td colspan="5" class="empty-cell">Loading appointments...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal-overlay hidden" id="deleteModal">
+    <div class="modal-card delete-card">
+      <h2>Are you sure you want to delete this appointment?</h2>
+      <div class="modal-actions">
+        <button class="btn btn-danger btn-modal" id="confirmDeleteBtn">Delete</button>
+        <button class="btn btn-light btn-modal" id="cancelDeleteBtn">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast hidden" id="toastMessage"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
