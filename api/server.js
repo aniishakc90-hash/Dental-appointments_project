@@ -8,7 +8,7 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// ✅ connect database (ONLY ONE TIME)
+// connect database
 const db = new sqlite3.Database("./database.db", (err) => {
   if (err) {
     console.error("Database error:", err.message);
@@ -17,7 +17,7 @@ const db = new sqlite3.Database("./database.db", (err) => {
   }
 });
 
-// ✅ create table
+// create table
 db.run(`
   CREATE TABLE IF NOT EXISTS appointments (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,12 +29,18 @@ db.run(`
   )
 `);
 
-// ✅ test route
+// test route
 app.get("/", (req, res) => {
   res.send("API is working ✅");
 });
 
-// ✅ GET all appointments
+/**
+ * @api {get} /appointments Get All Appointments
+ * @apiName GetAppointments
+ * @apiGroup Appointment
+ *
+ * @apiSuccess {Object[]} appointments List of appointments
+ */
 app.get("/appointments", (req, res) => {
   db.all("SELECT * FROM appointments ORDER BY id ASC", [], (err, rows) => {
     if (err) {
@@ -44,7 +50,13 @@ app.get("/appointments", (req, res) => {
   });
 });
 
-// ✅ GET one appointment
+/**
+ * @api {get} /appointments/:id Get Single Appointment
+ * @apiName GetAppointmentById
+ * @apiGroup Appointment
+ *
+ * @apiParam {Number} id Appointment ID
+ */
 app.get("/appointments/:id", (req, res) => {
   const { id } = req.params;
 
@@ -61,7 +73,17 @@ app.get("/appointments/:id", (req, res) => {
   });
 });
 
-// ✅ POST (add appointment)
+/**
+ * @api {post} /appointments Create Appointment
+ * @apiName CreateAppointment
+ * @apiGroup Appointment
+ *
+ * @apiBody {String} first_name First Name
+ * @apiBody {String} last_name Last Name
+ * @apiBody {String} date Date
+ * @apiBody {String} time Time
+ * @apiBody {String} treatment Treatment
+ */
 app.post("/appointments", (req, res) => {
   const { first_name, last_name, date, time, treatment } = req.body;
 
@@ -86,7 +108,13 @@ app.post("/appointments", (req, res) => {
   });
 });
 
-// ✅ PUT (update appointment)
+/**
+ * @api {put} /appointments/:id Update Appointment
+ * @apiName UpdateAppointment
+ * @apiGroup Appointment
+ *
+ * @apiParam {Number} id Appointment ID
+ */
 app.put("/appointments/:id", (req, res) => {
   const { id } = req.params;
   const { first_name, last_name, date, time, treatment } = req.body;
@@ -114,7 +142,13 @@ app.put("/appointments/:id", (req, res) => {
   });
 });
 
-// ✅ DELETE appointment
+/**
+ * @api {delete} /appointments/:id Delete Appointment
+ * @apiName DeleteAppointment
+ * @apiGroup Appointment
+ *
+ * @apiParam {Number} id Appointment ID
+ */
 app.delete("/appointments/:id", (req, res) => {
   const { id } = req.params;
 
